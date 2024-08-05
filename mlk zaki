@@ -1,0 +1,47 @@
+void automatic();
+void manual();
+char count =0;
+char count2=0;
+void main() {
+         trisb=0x30;
+         trisd=0x00;
+         trisc=0x00;
+         portc=0x00;
+
+       while(1){portc=0;if(portb.b4==1){manual();}
+       else{
+       automatic(); } }
+          }
+   void automatic(){
+        portc.B1=1;
+        portc.b2=1;portc.b7=1;
+        for(count2=0;count2<=3;count2++)  {
+           for(count=0;count<=9;count++){      if(portb.B4==1){break;}
+        if(count2==2&&count==0){portc.b2=0;portc.b3=1;}
+        if(count2==2&&count==3) {portc.b3=0;portc.b7=0;portc.b4=1;portc.b5=1;}
+        if(count2==3&&count==5){portc.b5=0;portc.b6=1;}
+        if(count2==3&&count==8){portc.b6=0;portc.b4=0;break;}
+        portb=count; portd=count2;delay_ms(1000);
+           }    }
+
+  }
+
+  void manual(){
+      portc.B1=1;
+    if(portb.b5==0)  {
+           for(count=0;count<=3;count++){ PORTC.B3=1;PORTC.B6=1;portb=count;portd=0;delay_ms(1000); }
+              portc.b3=0;portc.b6=0;portc.b2=1;portc.b7=1;portd=0;portb=0;
+               for(count=0;count<=20;count++){if(portb.b5==0&&portb.b4==1){  delay_ms(1000);} else{break;}}
+
+
+}
+      else{
+                 for(count=0;count<=3;count++){ PORTC.B3=1;PORTC.B6=1;  portb=count;portd=0;delay_ms(1000);}
+                   portc.b3=0;portc.b6=0;portc.b4=1;portc.b5=1; portd=0;portb=0;
+                   for(count=0;count<=20;count++){if(portb.b5==1&&portb.B4==1){delay_ms(1000);}else{break;} }
+
+
+          }
+
+
+      }
